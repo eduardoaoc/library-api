@@ -24,6 +24,26 @@ class BookModel(banco.Model):
             'book_note': self.book_note,
             'book_author': self.book_author,
             'book_type': self.book_type
-        }    
+        }  
+    @classmethod
+    def find_book(cls, book_id):
+        #SELECT * FROM books WHERE book_id = book_id
+        book= cls.query.filter_by(book_id=book_id).first()
+        if book:
+            return book
+        return None
 
+    def save_book(self):    
+        banco.session.add(self) #adiciona o objeto ao banco
+        banco.session.commit()    
+
+    def update_book(self, book_name, book_note, book_author, book_type):
+        self.book_name= book_name
+        self.book_note= book_note
+        self.book_author= book_author
+        self.book_type= book_type
+
+    def delete_book(self ):
+        banco.session.delete(self)
+        banco.session.commit()
 
