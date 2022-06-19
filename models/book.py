@@ -1,4 +1,6 @@
+from app import *
 from sql_alchemy import banco
+from flask_restx import fields
 
 
 class BookModel(banco.Model):
@@ -46,4 +48,13 @@ class BookModel(banco.Model):
     def delete_book(self ):
         banco.session.delete(self)
         banco.session.commit()
+
+    
+bookes= app.api.model('Bookes',{
+    'book_id': fields.String(description='O id do livro'),
+    'book_name': fields.String(description='O nome do livro'),
+    'book_note': fields.String(description='A nota dada do livro'),
+    'book_author': fields.String(description='O nome do autor do livro'),
+    'book_type': fields.String(description='Qual tipo do livro (Ex: Romance, Comédia...)')
+})
 

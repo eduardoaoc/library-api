@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_restful import  Api
+from flask_restx import  Api, api 
 from resource.book import Livros, Livro
 from models.book import BookModel
 
@@ -20,8 +20,11 @@ def criar_banco():
 def index():
     return {'status': 'Running server.'}
 
+
 api.add_resource(Livros, '/books') 
 api.add_resource(Livro, '/books/<string:book_id>') 
+
+
 
 if __name__ == '__main__':
     from sql_alchemy import banco
