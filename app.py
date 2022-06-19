@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_restx import  Api, api 
+from flask_restx import  Api
 from resource.book import Livros, Livro
 from models.book import BookModel
 

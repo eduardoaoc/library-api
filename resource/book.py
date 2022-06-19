@@ -1,7 +1,6 @@
 from importlib.resources import path
-from flask_restx import Resource, reqparse, Api, api
-from models.book import BookModel, bookes
-from app import api, app
+from flask_restx import Resource, reqparse, Api
+from models.book import BookModel
 import sqlite3
        
 
@@ -29,7 +28,6 @@ class Livro(Resource):
     argumentos.add_argument('book_type', type=str)
 
     #pega todos os livros cadastrados
-    @api.marshal_list_with(bookes)
     def get(self, book_id):
         livros= BookModel.find_book(book_id)
         if livros:
